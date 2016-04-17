@@ -1,0 +1,22 @@
+# emacs editor backup files
+*~
+\#*#
+.#*
+
+# vim editor backups
+*.swp
+*.swo
+*.swn
+
+# ignore composer's vendor tree
+# - autoloader data lives here
+# - required libs (we don't require any)
+vendor
+
+# mac os and windows preview files
+thumbs.db
+Thumbs.db
+.DS_STORE
+.ds_store
+.DS_Store
+._*

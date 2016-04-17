@@ -1,0 +1,8 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\View\Page\Config\Renderer">
+        <plugin name="Quickshiftin_Assetorderer" type="Quickshiftin\Assetorderer\View\Page\Config\Renderer" setOrder="1"/>
+    </type>
+    <type name="Magento\Framework\View\Asset\PropertyGroup">
+        <plugin name="Quickshiftin_Assetorderer" type="Quickshiftin\Assetorderer\View\Asset\PropertyGroup" setOrder="1"/>
+    </type>
+</config>
