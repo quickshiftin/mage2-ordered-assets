@@ -10,10 +10,12 @@ Magento2 has no way to order *assets* out of the box. This extension allows you 
 ### Manual
 Download the repository and add it in your Magento2 installation under **app/code/Quickshiftin/Assetorderer**
 
-### DI Compile
+### Magento commands
 Once you've installed the code via composer or download, you need to run the Magento DI compiler:
 
-`rm -rf var/di && bin/magento setup:upgrade && bin/magento setup:di:compile` on the command line
+* `bin/magento module:enable Quickshiftin_Assetorderer`
+* `bin/magento setup:upgrade`
+* `rm -rf var/cache var/di var/generation var/page_cache && bin/magento setup:di:compile`
 
 ## Usage
 Suppose you want to add a custom CSS file, *css/home.css*, on your homepage. Ordinarilly you would enter this in the layout update editor 
