@@ -1,0 +1,26 @@
+{
+    "name": "Quickshiftin/Assetorderer",
+    "description": "Ordering of CSS files for Magento2",
+    "type": "magento2-module",
+    "version": "1.0.0",
+    "require-dev": {
+        "php": ">=5.4.0"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Quickshiftin\\Assetorderer\\": ""
+        }
+    },
+    "license": "Copyright",
+    "authors": [
+        {
+            "name": "Nathan Nobbe",
+            "email": "quickshiftin@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
