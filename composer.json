@@ -1,5 +1,5 @@
 {
-    "name": "Quickshiftin/Assetorderer",
+    "name": "quickshiftin/assetorderer",
     "description": "Ordering of CSS files for Magento2",
     "type": "magento2-module",
     "version": "1.0.0",
