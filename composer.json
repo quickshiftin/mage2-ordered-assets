@@ -3,9 +3,6 @@
     "description": "Ordering of CSS files for Magento2",
     "type": "magento2-module",
     "version": "1.0.0",
-    "require-dev": {
-        "php": ">=5.4.0"
-    },
     "autoload": {
         "files": [
             "registration.php"
@@ -14,13 +11,14 @@
             "Quickshiftin\\Assetorderer\\": ""
         }
     },
-    "license": "Copyright",
+    "license": "MIT",
     "authors": [
         {
             "name": "Nathan Nobbe",
             "email": "quickshiftin@gmail.com"
         }
     ],
-    "minimum-stability": "alpha",
-    "require": {}
+    "require": {
+        "php": ">=5.4.0"
+    }
 }
