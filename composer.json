@@ -21,6 +21,6 @@
             "email": "quickshiftin@gmail.com"
         }
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "alpha",
     "require": {}
 }
