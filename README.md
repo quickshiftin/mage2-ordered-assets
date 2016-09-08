@@ -11,7 +11,7 @@ Magento2 has no way to order *assets* out of the box. This extension allows you 
 Download the repository and add it in your Magento2 installation under **app/code/Quickshiftin/Assetorderer**
 
 ### Magento commands
-Once you've installed the code via composer or download, you need to run the Magento DI compiler:
+Once you've installed the code via composer or download, you need to run some Magento commands:
 
 * `bin/magento module:enable Quickshiftin_Assetorderer`
 * `bin/magento setup:upgrade`
