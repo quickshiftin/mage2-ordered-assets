@@ -17,8 +17,14 @@ class PropertyGroup
 
         $aRealResult = [];
         foreach($result as $sAssetPath => $_oFile) {
-            $oFile = new File();
-            $oFile->setRealFile($_oFile);
+            // Fix for remote files
+            if ($_oFile instanceof \Magento\Framework\View\Asset\File) {
+                $oFile = new File();
+                $oFile->setRealFile($_oFile);
+            } else if ($_oFile instanceof \Magento\Framework\View\Asset\Remote) {
+                $oFile = new Remote();
+                $oFile->setRealRemoteFile($_oFile);
+            }
 
             if(isset($aProperties['attributes']) && isset($aProperties['attributes']['order'])) {
                 $oFile->setOrder((int)$aProperties['attributes']['order']);
