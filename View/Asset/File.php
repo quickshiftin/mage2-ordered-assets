@@ -11,7 +11,7 @@ class File
         return call_user_func_array([$this->_oRealFile, $sMethod], $aArgs);
     }
 
-    public function setRealFile(\Magento\Framework\View\Asset\File $oRealFile) {
+    public function setRealFile($oRealFile) {
         $this->_oRealFile = $oRealFile;
     }
 
