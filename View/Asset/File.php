@@ -26,9 +26,9 @@ class File implements LocalInterface
 
     // Boilerplate to implement interface -----------------------------------
     // AssetInterface
-    public function getUrl();
-    public function getContentType();
-    public function getSourceContentType();
+    public function getUrl()               { return $this->_oRealFile->getUrl(); }
+    public function getContentType()       { return $this->_oRealFile->getContentType(); }
+    public function getSourceContentType() { return $this->_oRealFile->getSourceContentType(); }
 
     // LocalInterface
     public function getSourceFile() { return $this->_oRealFile->getSourceFile(); }
