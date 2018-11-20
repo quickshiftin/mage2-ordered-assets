@@ -33,8 +33,8 @@ class PropertyGroup
                 $oFile->setRealRemoteFile($_oFile);
             }
 
-            if(isset($aProperties['attributes']) && isset($aProperties['attributes']['order'])) {
-                $oFile->setOrder((int)$aProperties['attributes']['order']);
+            if(isset($aProperties['order'])) {
+                $oFile->setOrder((int)$aProperties['order']);
             } else {
                 $oFile->setOrder(1);
             }
