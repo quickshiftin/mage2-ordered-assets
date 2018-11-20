@@ -10,4 +10,7 @@
     <type name="Magento\Framework\View\Asset\PropertyGroup">
         <plugin name="Quickshiftin_Assetorderer" type="Quickshiftin\Assetorderer\View\Asset\PropertyGroup" sortOrder="1"/>
     </type>
+    <type name="Magento\Framework\Config\Dom\UrnResolver">
+        <plugin name="Quickshiftin_Assetorderer" type="Quickshiftin\Assetorderer\Config\Dom\UrnResolver" sortOrder="1"/>
+    </type>
 </config>

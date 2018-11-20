@@ -33,7 +33,7 @@ class Renderer extends MageRenderer
         // Now reprocess the string output, rearranging asset tags in the desired order
         //-----------------------------------------------------------------------------
         return $this->_afterRenderAssets($originalResult);
-    }
+    } 
 
     protected function renderAssetHtml(\Magento\Framework\View\Asset\PropertyGroup $group)
     {
@@ -43,20 +43,22 @@ class Renderer extends MageRenderer
         try {
             /** @var $asset \Magento\Framework\View\Asset\AssetInterface */
             foreach ($assets as $asset) {
-                //--------------------------------------------------------------------
-                // Store the desired order while generating the original string output
-                //--------------------------------------------------------------------
-                if(method_exists($asset, 'getOrder')) {
-                    $this->_aAssetOrder[] = $asset->getOrder();
-                } else {
-                    $this->_aAssetOrder[] = 1;
-                }
-
                 $template = $this->getAssetTemplate(
                     $group->getProperty(GroupedCollection::PROPERTY_CONTENT_TYPE),
                     $this->addDefaultAttributes($this->getAssetContentType($asset), $attributes)
                 );
-                $result .= sprintf($template, $asset->getUrl());
+                $tag = sprintf($template, $asset->getUrl());
+                
+                //--------------------------------------------------------------------
+                // Store the desired order while generating the original string output
+                //--------------------------------------------------------------------
+                if(method_exists($asset, 'getOrder')) {
+                    $this->_aAssetOrder[md5(trim($tag))] = $asset->getOrder();
+                } else {
+                    $this->_aAssetOrder[md5(trim($tag))] = 1;
+                }
+
+                $result .= $tag;
             }
         } catch (LocalizedException $e) {
             $this->logger->critical($e);
@@ -67,31 +69,18 @@ class Renderer extends MageRenderer
 
     private function _afterRenderAssets($result)
     {
-        $sResult    = '<?xml version="1.0" encoding="UTF-8"?><root>' . $result . '</root>';
-        $oResult    = new SimpleXMLElement($sResult);
+        $aPieces    = explode("\n", $result);
         $sNewResult = '';
         $aUnordered = [];
         $aOrdered   = [];
         $bNeedsFlattenend = false;
-        $i = 0;
-        foreach($oResult as $oAssetTag) {
-            // Skip over non-css tags
-            if((string)$oAssetTag['type'] != 'text/css') {
-                if($oAssetTag->getName() == 'script') {
-                    $sInitialResult  = (string)$oAssetTag->asXml() . "\n";
-                    $sNewResult     .= str_replace('/>', '></script>', $sInitialResult);
-                } else {
-                    $sNewResult .= (string)$oAssetTag->asXml() . "\n";
-                }
-                $i++;
-                continue;
-            }
-
-            $sNewTag = (string)$oAssetTag->asXml();
-            if($this->_aAssetOrder[$i] == 1) {
+        foreach($aPieces as $sNewTag) {
+            $sSearch = md5($sNewTag);
+            // Special processing for css tag, whereby order from layout is honored
+            if(!isset($this->_aAssetOrder[$sSearch]) || $this->_aAssetOrder[$sSearch] == 1) {
                 $aUnordered[] = $sNewTag;
             } else {
-                $iOrder = $this->_aAssetOrder[$i];
+                $iOrder = $this->_aAssetOrder[$sSearch];
 
                 // Handle tags that have the same order
                 if(isset($aOrdered[$iOrder])) {
@@ -108,8 +97,6 @@ class Renderer extends MageRenderer
                     $aOrdered[$iOrder] = $sNewTag;
                 }
             }
-
-            $i++;
         }
 
         ksort($aOrdered);
