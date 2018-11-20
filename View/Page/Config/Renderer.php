@@ -70,11 +70,15 @@ class Renderer extends MageRenderer
     private function _afterRenderAssets($result)
     {
         $aPieces    = explode("\n", $result);
-        $sNewResult = '';
         $aUnordered = [];
         $aOrdered   = [];
+        $aJs        = [];
         $bNeedsFlattenend = false;
         foreach($aPieces as $sNewTag) {
+            if(strpos($sNewTag, '<script ') === 0) {
+                $aJs[] = $sNewTag;
+                continue;
+            }
             $sSearch = md5($sNewTag);
             // Special processing for css tag, whereby order from layout is honored
             if(!isset($this->_aAssetOrder[$sSearch]) || $this->_aAssetOrder[$sSearch] == 1) {
@@ -113,7 +117,7 @@ class Renderer extends MageRenderer
             $sOrdered = implode("\n", $aOrdered);
         }
 
-        $sOut = implode("\n", $aUnordered) . "\n" . $sOrdered . "\n" . $sNewResult;
+        $sOut = implode("\n", $aUnordered) . "\n" . $sOrdered . "\n" . implode("\n", $aJs);
         return str_replace("\n\n", "\n", $sOut);
     }
 }
