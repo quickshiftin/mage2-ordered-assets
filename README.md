@@ -35,3 +35,10 @@ However, Magento most likely will place the generated *link* tag **before** the 
 ```
 
 Any tags without an explicit order will come as they appear normally (effectively treated like they have an order of 1).
+
+### Unit Tests
+To run the unit tests, in a working installation of Magento2, with the extension enabled
+
+* `cp vendor/quickshiftin/assetorderer/phpunit.xml dev/tests/unit`
+* `cd dev/tests/unit`
+* `php ../../../vendor/phpunit/phpunit/phpunit`
