@@ -26,15 +26,15 @@ class Remote implements LocalInterface
 
     // Boilerplate to implement interface -----------------------------------
     // AssetInterface;
-    public function getUrl()               { return $this->_oRealFile->getUrl(); }
-    public function getContentType()       { return $this->_oRealFile->getContentType(); }
-    public function getSourceContentType() { return $this->_oRealFile->getSourceContentType(); }
+    public function getUrl()               { return $this->_oRealRemoteFile->getUrl(); }
+    public function getContentType()       { return $this->_oRealRemoteFile->getContentType(); }
+    public function getSourceContentType() { return $this->_oRealRemoteFile->getSourceContentType(); }
 
     // LocalInterface
-    public function getSourceFile() { return $this->_oRealFile->getSourceFile(); }
-    public function getContent()    { return $this->_oRealFile->getContent(); }
-    public function getFilePath()   { return $this->_oRealFile->getFilePath(); }
-    public function getContext()    { return $this->_oRealFile->getContext(); }
-    public function getModule()     { return $this->_oRealFile->getModule(); }
-    public function getPath()       { return $this->_oRealFile->getPath();  }
+    public function getSourceFile() { return $this->_oRealRemoteFile->getSourceFile(); }
+    public function getContent()    { return $this->_oRealRemoteFile->getContent(); }
+    public function getFilePath()   { return $this->_oRealRemoteFile->getFilePath(); }
+    public function getContext()    { return $this->_oRealRemoteFile->getContext(); }
+    public function getModule()     { return $this->_oRealRemoteFile->getModule(); }
+    public function getPath()       { return $this->_oRealRemoteFile->getPath();  }
 }
