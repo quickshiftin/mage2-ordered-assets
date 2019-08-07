@@ -3,9 +3,9 @@ namespace Quickshiftin\Assetorderer\View\Asset;
 
 use
     Magento\Framework\View\Asset\File as FileAsset,
-    Magento\Framework\View\Asset\LocalInterface;
+    Magento\Framework\View\Asset\MergeableInterface;
 
-class File implements LocalInterface
+class File implements MergeableInterface
 {
     private
         $_iOrder = 1,

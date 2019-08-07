@@ -3,9 +3,9 @@ namespace Quickshiftin\Assetorderer\View\Asset;
 
 use
     Magento\Framework\View\Asset\Remote as RemoteAsset,
-    Magento\Framework\View\Asset\LocalInterface;
+    Magento\Framework\View\Asset\MergeableInterface;
 
-class Remote implements LocalInterface
+class Remote implements MergeableInterface
 {
     private
         $_iOrder = 1,
